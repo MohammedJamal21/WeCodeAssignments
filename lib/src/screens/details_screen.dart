@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hello_kurdistan_app/models/city_model.dart';
 
 class DetailsScreen extends StatelessWidget {
-  final String name;
-  final String image;
-  final String description;
+  final CityModel city;
 
   const DetailsScreen({
-    required this.name,
-    required this.image,
-    required this.description,
+    required this.city,
   });
 
   @override
@@ -26,11 +23,11 @@ class DetailsScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            Image.network(image),
+            Image.network(city.image),
             Container(
               margin: const EdgeInsets.symmetric(vertical: 25),
               child: Text(
-                name,
+                city.name,
                 style: const TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
@@ -39,7 +36,7 @@ class DetailsScreen extends StatelessWidget {
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: Text(description),
+              child: Text(city.description),
             ),
           ],
         ),

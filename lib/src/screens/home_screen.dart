@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:hello_kurdistan_app/models/city_model.dart';
 
 import '../../mock/mock_data.dart';
 import 'details_screen.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
+
+  List<CityModel> cities = mockData.map((element) {
+    return CityModel.fromMap(element);
+  }).toList();
 
   @override
   Widget build(BuildContext context) {
@@ -28,16 +33,14 @@ class HomeScreen extends StatelessWidget {
             vertical: 10,
           ),
           child: ListView.builder(
-              itemCount: mockData.length,
+              itemCount: cities.length,
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
                     Navigator.of(context)
                         .push(MaterialPageRoute(builder: (context) {
                       return DetailsScreen(
-                        name: mockData[index]['name'].toString(),
-                        image: mockData[index]['image'].toString(),
-                        description: mockData[index]['description'].toString(),
+                        city: cities[index],
                       );
                     }));
                   },
